@@ -1,7 +1,5 @@
 # :partying_face: Template Go
 
-> This is the standard template for Go projects of @katallaxie.
-
 > This is a GitHub Template Repository. You can use the green button to create a new repository based on this template. Read more about [GitHub Template Repositories](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
 
 ## Get Started
