@@ -40,11 +40,6 @@ clean: ## Remove previous build.
 	find . -type f -name '*.gen.go' -exec rm {} +
 	git checkout go.mod
 
-.PHONY: setup
-setup: ## Setup the project.
-	$(GO) mod edit -module $(MODULE_NAME)
-	find . -type f -name '*.go' -exec sed -i -e 's,${GO_MOD},${MODULE_NAME},g' {} \;
-
 .PHONY: help
 help: ## Display this help screen.
 	@grep -E '^[a-z.A-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
