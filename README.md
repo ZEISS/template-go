@@ -15,12 +15,17 @@ make help
 
 Other available targets are
 
-* `build`
-* `fmt`
-* `lint`
-* `vet`
-* `generate`
-* `clean`
+```bash
+build                          Build the binary file.
+clean                          Remove previous build.
+fmt                            Run go fmt against code.
+generate                       Generate code.
+help                           Display this help screen.
+lint                           Run lint.
+release                        Release the project.
+test                           Run tests.
+vet                            Run go vet against code.
+```
 
 The convention is to use `make` to run the build.
 
