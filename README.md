@@ -22,6 +22,7 @@ fmt                            Run go fmt against code.
 generate                       Generate code.
 help                           Display this help screen.
 lint                           Run lint.
+mocks                          Generate mocks.
 release                        Release the project.
 test                           Run tests.
 vet                            Run go vet against code.

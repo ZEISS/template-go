@@ -1,13 +1,10 @@
 .DEFAULT_GOAL := build
 
-GO 							?= go
-GO_RUN_TOOLS 		?= $(GO) run -modfile ./tools/go.mod
+GO 						?= go
+GO_RUN_TOOLS 			?= $(GO) run -modfile ./tools/go.mod
 GO_TEST 				?= $(GO_RUN_TOOLS) gotest.tools/gotestsum --format pkgname
-GO_RELEASER 		?= $(GO_RUN_TOOLS) github.com/goreleaser/goreleaser
+GO_RELEASER 			?= $(GO_RUN_TOOLS) github.com/goreleaser/goreleaser
 GO_MOD					?= $(shell ${GO} list -m)
-
-# Module name
-MODULE_NAME ?= github.com/katallaxie/template-go
 
 .PHONY: release
 release: ## Release the project.
@@ -21,9 +18,17 @@ build: ## Build the binary file.
 generate: ## Generate code.
 	$(GO) generate ./...
 
+.PHONY: mocks
+mocks: ## Generate mocks.
+	$(GO_RUN_TOOLS) github.com/vektra/mockery/v2
+
 .PHONY: fmt
 fmt: ## Run go fmt against code.
 	$(GO_RUN_TOOLS) mvdan.cc/gofumpt -w .
+
+.PHONY: start
+start: ## Run air live reload.
+	$(GO_RUN_TOOLS) github.com/air-verse/air
 
 .PHONY: vet
 vet: ## Run go vet against code.
