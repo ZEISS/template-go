@@ -5,7 +5,7 @@ go 1.23
 toolchain go1.23.2
 
 require (
-	github.com/air-verse/air v1.61.0
+	github.com/air-verse/air v1.61.1
 	github.com/golangci/golangci-lint v1.61.0
 	github.com/goreleaser/goreleaser v1.24.0
 	github.com/vektra/mockery/v2 v2.46.2
