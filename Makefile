@@ -1,10 +1,14 @@
 .DEFAULT_GOAL := build
 
-GO 						?= go
-GO_RUN_TOOLS 			?= $(GO) run -modfile ./tools/go.mod
+# Go variables
+GO 							?= go
+GO_RUN_TOOLS 		?= $(GO) run -modfile ./tools/go.mod
 GO_TEST 				?= $(GO_RUN_TOOLS) gotest.tools/gotestsum --format pkgname
-GO_RELEASER 			?= $(GO_RUN_TOOLS) github.com/goreleaser/goreleaser
+GO_RELEASER 		?= $(GO_RUN_TOOLS) github.com/goreleaser/goreleaser
 GO_MOD					?= $(shell ${GO} list -m)
+
+# Air to live reload
+AIR							?= air
 
 .PHONY: release
 release: ## Release the project.
@@ -27,8 +31,8 @@ fmt: ## Run go fmt against code.
 	$(GO_RUN_TOOLS) mvdan.cc/gofumpt -w .
 
 .PHONY: start
-start: ## Run air live reload.
-	$(GO_RUN_TOOLS) github.com/air-verse/air
+start: ## Run air live reload. Create a .air.toml file to configure.
+	$(AIR)
 
 .PHONY: vet
 vet: ## Run go vet against code.
@@ -45,9 +49,9 @@ lint: ## Run lint.
 
 .PHONY: clean
 clean: ## Remove previous build.
-	rm -rf .test .dist
-	find . -type f -name '*.gen.go' -exec rm {} +
-	git checkout go.mod
+	@rm -rf .test .dist
+	@find . -type f -name '*.gen.go' -exec rm {} +
+	@git checkout go.mod
 
 .PHONY: help
 help: ## Display this help screen.
